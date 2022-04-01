@@ -1,12 +1,12 @@
-package com.jbf.springcloud.controller;
+package springcloud.controller;
 
-import com.jbf.springcloud.Service.PaymentService;
 import com.jbf.springcloud.entities.CommonResult;
 import com.jbf.springcloud.entities.Payment;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import springcloud.Service.PaymentService;
 
 /**
  * @Auther: zhou
@@ -20,7 +20,6 @@ public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
-
     @Value("${server.port}")
     private String serverPort;
     @PostMapping("/payment/create")
