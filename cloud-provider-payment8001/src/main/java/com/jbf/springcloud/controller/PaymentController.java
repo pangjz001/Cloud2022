@@ -6,7 +6,13 @@ import com.jbf.springcloud.entities.Payment;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Auther: zhou
@@ -20,6 +26,9 @@ public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
+
+    @Resource
+    private DiscoveryClient discoveryClient;
 
     @Value("${server.port}")
     private String serverPort;
@@ -45,4 +54,33 @@ public class PaymentController {
             return new CommonResult(444,"查询失败",null);
         }
     };
+    @GetMapping("/payment/discovery")
+    public Object discovery(){
+        //获取服务列表的信息
+
+        List<String> services = discoveryClient.getServices();
+        for (String element : services) {
+            log.info("*******element：" + element);
+        }
+
+        //获取CLOUD-PAYMENT-SERVICE服务的所有具体实例
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+        for (ServiceInstance instance : instances) {
+            //getServiceId服务器id getHost主机名称 getPort端口号  getUri地址
+            log.info(instance.getServiceId() + "\t" + instance.getHost() + "\t" + instance.getPort() + "\t" + instance.getUri());
+        }
+
+        return this.discoveryClient;
+    }
+
+    @GetMapping("/payment/feign/timeout")
+    public String paymentFeignTimeout(){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverPort;
+    }
+
 }

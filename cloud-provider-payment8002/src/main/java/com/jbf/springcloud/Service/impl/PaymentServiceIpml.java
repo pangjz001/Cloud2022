@@ -1,11 +1,10 @@
-package springcloud.Service.impl;
+package com.jbf.springcloud.Service.impl;
 
-
+import com.jbf.springcloud.Dao.PaymentDao;
+import com.jbf.springcloud.Service.PaymentService;
 import com.jbf.springcloud.entities.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import springcloud.Dao.PaymentDao;
-import springcloud.Service.PaymentService;
 
 /**
  * @Auther: zhou
