@@ -52,6 +52,11 @@ public class PaymentController {
             return new CommonResult(444,"查询失败",null);
         }
     };
+
+    @GetMapping("lb")
+    public String getPaymentLB() {
+        return serverPort;
+    }
     @GetMapping("/payment/discovery")
     public Object discovery(){
         //获取服务列表的信息
