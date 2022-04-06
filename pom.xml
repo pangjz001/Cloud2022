@@ -12,7 +12,7 @@
         <module>cloud-consumer-order80</module>
         <module>cloud-api-commons</module>
         <module>cloud-eureka-server7001</module>
-        <module>cloud-eureka-server7002</module>
+<!--        <module>cloud-eureka-server7002</module>-->
         <module>cloud-provider-payment8002</module>
         <module>cloud-consumer-feign-order80</module>
         <module>cloud-provider-hystrix-payment8001</module>
@@ -21,6 +21,10 @@
         <module>cloud-gateway-gateway9527</module>
         <module>cloud-stream-rabbitmq-provider8801</module>
         <module>cloud-stream-rabbitmq-consumer8802</module>
+        <module>cloudalibaba-provider-payment9001</module>
+        <module>cloudalibaba-provider-payment9002</module>
+        <module>cloudalibaba-consumer-nacos-order83</module>
+        <module>cloudalibaba-config-nacos-client3377</module>
     </modules>
     <packaging>pom</packaging>
 
